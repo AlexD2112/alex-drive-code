@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.DriveCommand;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.MouseSubsystem;
+import frc.robot.subsystems.NetworkTableSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -19,8 +21,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveTrain m_driveTrain = new DriveTrain();
+  private final MouseSubsystem m_mouseSubsystem = new MouseSubsystem();
+  //private KeyListener m_keyListener = new KeyListener();
 
-  private final DriveCommand m_driveCommand = new DriveCommand(m_driveTrain);
+  private final DriveCommand m_driveCommand = new DriveCommand(m_driveTrain, m_mouseSubsystem);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -41,7 +45,7 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand() {
+  public Command getDriveCommand() {
     // An ExampleCommand will run in autonomous
     return m_driveCommand;
   }
