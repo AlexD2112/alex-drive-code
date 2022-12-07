@@ -11,10 +11,10 @@ import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 public class DriveTrain extends SubsystemBase {
-  private WPI_TalonFX m_backLeft = new WPI_TalonFX(1);
-  private WPI_TalonFX m_frontLeft = new WPI_TalonFX(2);
-  private WPI_TalonFX m_backRight = new WPI_TalonFX(3); 
-  private WPI_TalonFX m_frontRight = new WPI_TalonFX(4); 
+  public WPI_TalonFX m_backLeft = new WPI_TalonFX(3);
+  public WPI_TalonFX m_frontLeft = new WPI_TalonFX(2);
+  public WPI_TalonFX m_backRight = new WPI_TalonFX(1); 
+  public WPI_TalonFX m_frontRight = new WPI_TalonFX(0); 
 
   public DifferentialDrive diffDrive;
 
@@ -33,6 +33,10 @@ public class DriveTrain extends SubsystemBase {
     diffDrive = new DifferentialDrive(m_backLeft, m_backRight);
   }
 
+  public void manualDrive(double throttle, double turn) {
+    diffDrive.arcadeDrive(throttle, turn);
+  }
+  
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

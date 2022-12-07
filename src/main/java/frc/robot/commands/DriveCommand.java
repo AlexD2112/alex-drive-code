@@ -44,15 +44,14 @@ public class DriveCommand extends CommandBase {
       if (throttle < 0.05 && throttle > -0.05) { //Checking if throttle is in dead zone
         drive.arcadeDrive(0, turn);
       } else if (turn < 0.05 && turn > -0.05) {//Checking if turn is in dead zone 
-        drive.arcadeDrive(throttle, 0); 
+        drive.arcadeDrive(throttle * throttle, 0); 
       } else {//if else, both are outside dead zones
-        drive.arcadeDrive(throttle, turn);
+        drive.arcadeDrive(throttle * throttle, turn);
       }
     } else {
+      System.out.println("Is this working?");
       drive.arcadeDrive(0, 0);
     }
-
-    System.out.println(throttle + " " + turn);
   }
 
   // Called once the command ends or is interrupted.
